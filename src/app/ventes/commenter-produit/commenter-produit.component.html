@@ -1,0 +1,115 @@
+<div id="page">
+
+    <div>
+
+
+        <table class="table table-striped cart-list">
+            <thead>
+                <tr>
+                    <th>
+                        Product
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let l of listeLigneCommandeCommandee" (click)="afficherFormCommenter(l.produit)">
+                    <td>
+                        <div class="thumb_cart">
+                            <img style="width: 50px;" src="{{l.produit.imageUrl}}"
+                                data-src="{{l.produit.imageUrl}}" class="lazy" alt="Image">
+                        </div>
+                        <span class="item_cart">{{l.produit.idProduit}} : {{l.produit.description}}</span>
+                    </td>
+                    <td>
+                        <strong>{{l.produit.prix}}</strong>
+                    </td>
+                    <td>
+                        <div class="numbers-row">
+                            <input type="text" value="{{l.quantite}}" id="quantity_1" class="qty2" name="quantity_1">
+                            <div (click)="ajoutQuantite(l)" class="inc button_inc">+</div>
+                            <div (click)="retireQuantite(l)" class="dec button_inc">-</div>
+                        </div>
+                    </td>
+                    <td>
+                        <strong>{{l.prixParQuantite}}</strong>
+                    </td>
+                    
+                </tr>
+              
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <p>
+            Vous n'avez aucune commande en attente d'évaluation
+            Après la livraison de vos produits, vous pourrez les évaluer.
+            <br>Vos commentaires seront publiés sur la page produit pour
+            aider tous les utilisateurs de Allaia à bénéficier de la
+            meilleure expérience d'achat.
+        </p>    
+        <div class="container margin_60_35" *ngIf="toggle">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="write_review">
+                        <h1>Vos Avis</h1>
+                        
+                        <div class="rating_submit">
+                            <div class="form-group">
+                                <label class="d-block">avis</label>
+                                <span class="rating mb-0">
+                                    <input type="radio" class="rating-input" id="5_star" name="rating-input"
+                                        value="5 Stars" (click)="nbrEtoile5()"><label for="5_star" class="rating-star"></label>
+                                    <input type="radio" class="rating-input" id="4_star" name="rating-input"
+                                        value="4 Stars" (click)="nbrEtoile4()"><label for="4_star" class="rating-star"></label>
+                                    <input type="radio" class="rating-input" id="3_star" name="rating-input"
+                                        value="3 Stars" (click)="nbrEtoile3()"><label for="3_star" class="rating-star"></label>
+                                    <input type="radio" class="rating-input" id="2_star" name="rating-input"
+                                        value="2 Stars" (click)="nbrEtoile2()"><label for="2_star" class="rating-star"></label>
+                                    <input type="radio" class="rating-input" id="1_star" name="rating-input"
+                                        value="1 Star" (click)="nbrEtoile1()"><label for="1_star" class="rating-star"></label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /rating_submit -->
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input [(ngModel)]="ajoutCommenter.titre" name="titre" class="form-control" type="text" placeholder="Donner un titre">
+                        </div>
+                        <div class="form-group">
+                            <label>Contenu</label>
+                            <textarea [(ngModel)]="ajoutCommenter.contenu" name="contenu" class="form-control" style="height: 180px;"
+                                placeholder="Donner un commenter"></textarea>
+                        </div>
+
+                        <a (click)="commenter()" class="btn_1">Confirmer</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!--/main-->
+</div>

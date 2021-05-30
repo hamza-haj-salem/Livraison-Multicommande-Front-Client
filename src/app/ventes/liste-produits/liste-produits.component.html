@@ -1,0 +1,209 @@
+<div>
+    <div class="top_banner">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.3)">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a style="color: blue;" href="home">Home</a></li>
+                        <li><a style="color: blue;" href="listeProduits">Liste Produits</a></li>
+
+                    </ul>
+                </div>
+                <!--<h1 style="color: blue;">Tous Les Catégories</h1>-->
+            </div>
+        </div>
+        <img src="assets/images/shoppingJumai.jpg" class="img-fluid" alt="">
+
+    </div>
+    <!-- /top_banner -->
+
+    <div id="stick_here"></div>
+    <div class="toolbox elemento_stick">
+        <div class="container">
+            <ul class="clearfix">
+                <li>
+                    <div class="sort_select">
+                        <select name="sort" id="sort">
+                            <option value="popularity" selected="selected">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="date">Sort by newness</option>
+                            <option value="price">Sort by price: low to high</option>
+                            <option value="price-desc">Sort by price: high to
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <a href="listeProduits"><i class="ti-view-grid"></i></a>
+                    <a href="listeProduitsBarreLaterale"><i class="ti-view-list"></i></a>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#filters" role="button" aria-expanded="false"
+                        aria-controls="filters">
+                        <i class="ti-filter"></i><span>Filters</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="collapse" id="filters">
+                <div class="row small-gutters filters_listing_1">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="drop">Categories</a>
+                            <div class="dropdown-menu">
+                                <div class="filter_type">
+                                    <ul>
+                                        <li *ngFor="let s of listeSousCategories"
+                                            (click)="filtrerParSousCategorie(s.titre)">
+                                            <label class="container_check">{{s.titre}}
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /dropdown -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="drop">Nature</a>
+                            <div class="dropdown-menu">
+                                <div class="filter_type">
+                                    <ul>
+                                        <li (click)="filtrerParNature()">
+                                            <label class="container_check">Cassable
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li (click)="filtrerParNature2()">
+                                            <label class="container_check">Non Cassable
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /dropdown -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="drop">Titre</a>
+                            <div class="dropdown-menu">
+                                <div class="filter_type">
+                                    <ul>
+                                        <li *ngFor="let p of listeProduits" (click)="filtrerParTitre(p.titre)">
+                                            <label class="container_check">{{p.titre}}
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /dropdown -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="drop">Prix</a>
+                            <div class="dropdown-menu">
+                                <div class="filter_type">
+                                    <ul>
+                                        <li (click)="filtrerParPrix(1000,1500)">
+                                            <label class="container_check">1000Dt — 1500DT<small>11</small>
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li (click)="filtrerParPrix(1500,2000)">
+                                            <label class="container_check">1500DT — 2000DT<small>08</small>
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li (click)="filtrerParPrix(2000,2500)">
+                                            <label class="container_check">2000DT — 2500DT<small>05</small>
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                        <li (click)="filtrerParPrix(2500,3000)">
+                                            <label class="container_check">2500DT — 3000DT<small>18</small>
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /dropdown -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /toolbox -->
+
+    <div class="container margin_30">
+        <div class="row small-gutters">
+            <div *ngFor="let p of listeProduits">
+                <div class="col-6 col-md-4 col-xl-3">
+                    <div class="grid_item" style="width: 270px; height: 350px;">
+
+                        <figure>
+                            <!--<span class="ribbon new">New</span>-->
+                            <a (click)="detailsProduit(p)">
+                                <img style="height: 250px;" class="img-fluid lazy" src={{p.imageUrl}} data-src={{p.imageUrl} alt="">
+                            </a>
+                            <div data-countdown="2019/05/15" class="countdown"></div>
+                        </figure>
+                        
+                        <a (click)="detailsProduit(p)">
+                            <h3>{{p.idProduit}} : </h3>
+                            <h3>{{p.titre}}</h3>
+                            <p>{{p.description}}</p>
+                        </a>
+                        <div class="price_box">
+                            <span class="new_price">{{p.prix}} DT</span>
+                            <!--<span class="old_price">$60.00</span>-->
+                        </div>
+                        <ul>
+                            <li><a (click)="ajouterAuFavoris(p)" class="tooltip-1" data-toggle="tooltip"
+                                    data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Ajouter
+                                        aux
+                                        favoris</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left"
+                                    title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
+                                        compare</span></a></li>
+                            <li><a (click)="ajouterAuCommande(p)" class="tooltip-1" data-toggle="tooltip"
+                                    data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add
+                                        to cart</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /grid_item -->
+                </div>
+            </div>
+            <!-- /col -->
+
+
+        </div>
+        <!-- /row -->
+
+        
+
+    </div>
+    <!-- /container -->
+
+</div>

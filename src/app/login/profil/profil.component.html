@@ -1,0 +1,223 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="profile-nav col-md-3">
+            <div class="panel">
+                <div class="user-heading round">
+                    <a>
+                        <img src="assets/img/avatar.jpg" alt="">
+                    </a>
+                    <h1>{{client.nom}} {{client.prenom}}</h1>
+                    <p>{{client.email}}</p>
+                </div>
+
+                <ul style="cursor: pointer;">
+                    <li class="active"><a href="#"> <i class="fa fa-user"></i> Profil</a></li>
+                    <li ><a> <i class="fa fa-calendar"></i> Historique Commande </a></li>
+                    <li><a (click)="editProfil()"> <i class="fa fa-edit"></i> Edit profile</a></li>
+
+                </ul>
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+        <div class="profile-info col-md-9">
+            <div class="panel">
+
+
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div class="panel">
+                <div class="bio-graph-heading">
+                    Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna
+                    metus.
+                </div>
+
+            </div>
+            <div><p></p> <p></p></div>
+
+
+            <div class="panel-body bio-graph-info">
+                    
+                <div class="step first">
+                    <div class="step last">
+                        <h3>1.Info Génerales</h3>
+                        <div class="box_general summary">
+                            <div class="row">
+                                <div class="bio-row">
+                                    <p><span>Id </span>: {{client.id}}</p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Nom </span>: {{client.nom}}</p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Prenom </span>: {{client.prenom}}</p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>Adresse </span>: {{client.adresse}}</p>
+                                </div>
+                                <div class="bio-row">
+                                    <p><span>email</span>: {{client.email}}</p>
+                                </div>
+        
+        
+                                <div class="bio-row">
+                                    <p><span>Mobile </span>: (12) 03 4567890</p>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+
+
+
+
+
+            <div class="step first" *ngIf="afficherEditProfil">
+                <h3>2. Informations Utilisateurs</h3>
+                <ul class="nav nav-tabs" id="tab_checkout" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#tab_1" role="tab"
+                            aria-controls="tab_1" aria-selected="true">Editer Informations</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content checkout">
+                    <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" [(ngModel)]="clientModifiee.email"
+                                placeholder="Email">
+                        </div>
+
+                        <hr>
+                        <div class="row no-gutters">
+                            <div class="col-6 form-group pr-1">
+                                <input type="text" class="form-control" [(ngModel)]="clientModifiee.nom" name="nom"
+                                    placeholder="Name">
+                            </div>
+                            <div class="col-6 form-group pl-1">
+                                <input type="text" class="form-control" name="prenom"
+                                    [(ngModel)]="clientModifiee.prenom" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="row no-gutters">
+                            <div class="col-md-12 form-group">
+                                <div class="custom-select-form">
+                                    <select class="wide add_bottom_15" name="adresse"
+                                        [(ngModel)]="clientModifiee.adresse" id="country">
+                                        <option value="">Choisir une adresse</option>
+                                        <option value="Tunis">Tunis</option>
+                                        <option value="Ben Arous">Ben Arous</option>
+                                        <option value="Bizerte">Bizerte</option>
+                                        <option value="Nabel">Nabel</option>
+                                        <option value="Sfax">Sfax</option>
+                                        <option value="Sousse">Sousse</option>
+                                        <option value="Monastir">Monastir</option>
+                                        <option value="Kasserine">Kasserine</option>
+                                        <option value="Gafsa">Gafsa</option>
+                                        <option value="Gabes">Gabes</option>
+                                        <option value="Mednine">Mednine</option>
+                                        <option value="Tataouine">Tataouine</option>
+                                        <option value="Sidi Bouzid">Sidi Bouzid</option>
+                                        <option value="Selyena">Selyena</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /row -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Telephone">
+                        </div>
+                        <hr>
+
+                        <div id="other_addr_c" class="pt-2">
+                            <div class="row no-gutters">
+                                <div class="col-6 form-group pr-1">
+                                    <input type="text" class="form-control" placeholder="Name">
+                                </div>
+                                <div class="col-6 form-group pl-1">
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <!-- /row -->
+
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Telephone">
+                            </div>
+                        </div>
+                        <!-- /other_addr_c -->
+                        <hr>
+                    </div>
+                    <!-- /tab_1 -->
+                    <button type="submit" class="btn btn-primary"
+                        (click)="modifierClient(clientModifiee)">Modifier</button>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div class="step first">
+                <div class="step last">
+                    <h3>3.Historique des Commande</h3>
+                    <div class="box_general summary">
+                        <ul>
+            
+                            <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee">
+                                <em>{{l.quantite}}x{{l.produit.titre}}</em> 
+                                <span>{{l.prixParQuantite}}</span>
+                                <img style="width: 50px;" src="{{l.produit.imageUrl}}" data-src="{{l.produit.imageUrl}}"
+                                    class="lazy" alt="Image">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="clearfix"><em><strong>Subtotal</strong></em> <span>{{commande.prixTotal}}
+                                    DT</span></li>
+
+                        </ul>
+                        <div class="total clearfix">TOTAL <span>{{Total}}</span></div>
+
+
+
+                    </div>
+                    <!-- /box_general -->
+                </div>
+                <!-- /step -->
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>

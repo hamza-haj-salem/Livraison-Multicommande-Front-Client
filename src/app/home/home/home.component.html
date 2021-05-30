@@ -1,0 +1,85 @@
+<div class="header-video">
+    <div id="hero_video">
+        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+            <div class="container">
+                <div class="row justify-content-center justify-content-md-start">
+                    <div class="col-lg-6">
+                        <div class="slide-text white">
+                            <h3>{{listeProduits[0].titre}}<br>{{listeProduits[0].description}}</h3>
+                            <p>{{listeProduits[0].sousCategorie.titre}}</p>
+                            <a class="btn_1" href="listeProduits" role="button">Consulter les produits</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="assets/images/shoppingJumai.jpg" class="img-fluid" alt="">
+</div>
+<!-- /header-video -->
+
+<div class="feat">
+    <div class="container">
+        <ul>
+            <li>
+                <div class="box">
+                    <i class="ti-gift"></i>
+                    <div class="justify-content-center">
+                        <h3>Magasiner</h3>
+                        <p>différents produits</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="box">
+                    <i class="ti-wallet"></i>
+                    <div class="justify-content-center">
+                        <h3>prix acceptable</h3>
+                        <p>différents catégories</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="box">
+                    <i class="ti-headphone-alt"></i>
+                    <div class="justify-content-center">
+                        <h3>Livraison </h3>
+                        <p>toutes les produits</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--/feat-->
+
+<div class="container margin_60_35">
+    <div class="row small-gutters categories_grid">
+        <div class="col-sm-12 col-md-6">
+            <a href="listeProduits">
+                <img src="{{listeProduits[0].imageUrl}}" style="height: 1100px; width: 590px;"
+                    data-src="img/img_cat_home_1.jpg" alt="">
+                <div class="wrapper">
+                    <h2>{{listeProduits[0].sousCategorie.categorie.titre}}</h2>
+                    <p>{{listeProduits[0].sousCategorie.titre}}</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="row small-gutters mt-md-0 mt-sm-2">
+                <div class="col-sm-6" *ngFor="let p of listeProduits">
+                    <a href="listeProduits">
+                        <img src="{{p.imageUrl}}" data-src="img/img_cat_home_2.jpg" alt="" class="img-fluid lazy">
+                        <div class="wrapper">
+                            <h2>{{p.sousCategorie.categorie.titre}}</h2>
+                            <p>{{p.sousCategorie.titre}}</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/categories_grid-->
+</div>
+<!-- /container -->

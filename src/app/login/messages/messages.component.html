@@ -1,0 +1,105 @@
+<div id="chat-container">
+    <div id="search-container">
+        <input type="text" placeholder="search" />
+    </div>
+    <div id="conversation-list">
+        <div class="conversation active" *ngFor="let a of listeAdmin" (click)="afficherlisteMessage(a.id)">
+            <img src="assets/img/avatar.jpg" />
+            <div class="title-text">
+                {{a.nom}} {{a.prenom}}
+            </div>
+            <div class="created-date">
+                April 10
+            </div>
+            <div class="conversation-message">
+                This is message llllll llllllllllllllll lllllllll ll
+            </div>
+        </div>
+
+        <!-- <div class="conversation ">
+                <img src="/assets/menu/photo_profil_client/1.jpg" />
+                <div class="title-text">
+                    hamza haj salem AAAAAAAAAAAAA AAAAAAAAAAA
+                </div>
+                <div class="created-date">
+                    April 17
+                </div>
+                <div class="conversation-message">
+                    This is message bbbbbbbbbbbbbb bbbbbbbb bbbbbb bbbbbbbbbb
+                </div>
+            </div>
+
+            <div class="conversation ">
+                <img src="/assets/menu/photo_profil_client/1.jpg" />
+                <div class="title-text">
+                    hamza haj salem ccccccc cccccc
+                </div>
+                <div class="created-date">
+                    April 17
+                </div>
+                <div class="conversation-message">
+                    This is message ccccc cccc ccc cccc
+                </div>
+            </div> -->
+
+    </div>
+    <div id="new-message-container">
+        <a href="#">+</a>
+    </div>
+
+    <div id="chat-title">
+        <span>{{client.nom}} {{client.prenom}}</span>
+        <!--<img class="supp" src="/assets/menu/img/trash_logo.png" alt="Delete Conversation" />-->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive"
+            viewBox="0 0 16 16">
+            <path
+                d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+        </svg>
+    </div>
+    <div id="chat-message-list">
+        <div *ngFor="let m of listeMessageByUtilisateur">
+            <div class="message-row you-message" *ngIf="m.uEnv.id == client.id"> 
+
+                <div class="message-content" >
+                    <!-- 1 : session-->
+                    <div class="message-text"> {{m.contenu}}</div>
+                    <div class="message-time"> {{m.dateEnvoi}}</div>
+                </div>
+
+            </div>
+
+            <div class="message-row other-message" *ngIf="m.uEnv.id != client.id">
+                <div class="message-content">
+                    <img style="width: 50px;" src="assets/img/avatar.jpg" alt="hamza haj salem" />
+                    <div class="message-text">
+                        {{m.contenu}}
+                    </div>
+                    <div class="message-time"> {{m.dateEnvoi}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="chat-form">
+        <!--<img class="atta" src="/assets/menu/img/attachement.png" alt="add attachement" />-->
+        <table>
+            <tr>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
+                        class="bi bi-paperclip" viewBox="0 0 16 16">
+                        <path
+                            d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+                    </svg>
+                </td>
+                <td>
+                    <input type="text" placeholder="type a message" [(ngModel)]="message.contenu" />
+                </td>
+                <td>
+                    <button type="submit" (click)="envoyerMessage()">env</button>
+
+                </td>
+            </tr>
+        </table>
+        
+        
+    </div>
+</div>
