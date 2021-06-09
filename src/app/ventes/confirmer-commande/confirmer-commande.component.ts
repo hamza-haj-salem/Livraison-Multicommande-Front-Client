@@ -22,7 +22,11 @@ export class ConfirmerCommandeComponent implements OnInit {
     this.serv.getCommandeByClient(this.client.id).subscribe(
       (data) => {
         this.commande = data;
-        this.commande.etat="fini";
+        
+        this.commande=this.local.retrieve("commandeFinale");
+        console.log(this.commande);
+        this.commande.etat="en attente d'affectation";
+        
         this.serv.modifierCommande(this.commande).subscribe(
           (data) => {
             setInterval(() => {

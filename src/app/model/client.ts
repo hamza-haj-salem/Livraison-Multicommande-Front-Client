@@ -6,9 +6,13 @@ export class Client {
     public motDePasse:string;
     public libelle:string;
     public adresse:string;
-    public image_id:string;
+    public imageUrl:string;
+    public numTelephone:number;
     
     constructor(){}
+    public set $numTelephone(x:number){
+        this.$numTelephone=x;
+    }
 
     public set $id(x:number){
         this.$id=x;
@@ -31,7 +35,7 @@ export class Client {
     public set $adresse(x:string){
         this.$adresse=x;
     }
-    public set $image_id(x:string){
-        this.$image_id=x;
+    public set $imageUrl(x:string){
+        this.$imageUrl=x;
     }
 }

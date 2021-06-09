@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Produit } from './model/produit';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class LMClientService {
+  private dbPath="/orders"
+  commandsRef: any;
+  constructor(private http: HttpClient, private afs : AngularFirestore) {
+    this.commandsRef = afs.collection(this.dbPath);
+   }
 
-  constructor(private http: HttpClient,) { }
+  ajouterCmdFb(c: any):void{
+    this.commandsRef.add(c);
+  }
+
   //PRODUIT
+
   getListeProduits() {
     return this.http.get('http://localhost:8080/listeProduits');
   }
@@ -53,17 +64,11 @@ export class LMClientService {
   modifierCommande(c: any) {
     return this.http.post('http://localhost:8080/modifierCommande', c);
   }
-
-
- 
- 
-  
-
-  
-
   getCommandeByClient(idCl: number) {
     return this.http.get('http://localhost:8080/getCommandeByClient/' + idCl);
-
+  }
+  creerCommande(c: any) {
+    return this.http.post('http://localhost:8080/creerCommande', c);
   }
 
   //LIGNE COMMANDE

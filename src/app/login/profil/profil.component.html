@@ -5,7 +5,7 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a>
-                        <img src="assets/img/avatar.jpg" alt="">
+                        <img src={{client.imageUrl}}.jpeg alt="">
                     </a>
                     <h1>{{client.nom}} {{client.prenom}}</h1>
                     <p>{{client.email}}</p>
@@ -13,7 +13,7 @@
 
                 <ul style="cursor: pointer;">
                     <li class="active"><a href="#"> <i class="fa fa-user"></i> Profil</a></li>
-                    <li ><a> <i class="fa fa-calendar"></i> Historique Commande </a></li>
+                    <li><a> <i class="fa fa-calendar"></i> Historique Commande </a></li>
                     <li><a (click)="editProfil()"> <i class="fa fa-edit"></i> Edit profile</a></li>
 
                 </ul>
@@ -37,11 +37,14 @@
                 </div>
 
             </div>
-            <div><p></p> <p></p></div>
+            <div>
+                <p></p>
+                <p></p>
+            </div>
 
 
             <div class="panel-body bio-graph-info">
-                    
+
                 <div class="step first">
                     <div class="step last">
                         <h3>1.Info Génerales</h3>
@@ -62,17 +65,17 @@
                                 <div class="bio-row">
                                     <p><span>email</span>: {{client.email}}</p>
                                 </div>
-        
-        
+
+
                                 <div class="bio-row">
-                                    <p><span>Mobile </span>: (12) 03 4567890</p>
+                                    <p><span>Mobile </span>: {{client.numTelephone}}</p>
                                 </div>
-        
+
                             </div>
                         </div>
                     </div>
                 </div>
-               
+
             </div>
 
 
@@ -89,79 +92,82 @@
                     </li>
 
                 </ul>
-                <div class="tab-content checkout">
-                    <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" [(ngModel)]="clientModifiee.email"
-                                placeholder="Email">
-                        </div>
-
-                        <hr>
-                        <div class="row no-gutters">
-                            <div class="col-6 form-group pr-1">
-                                <input type="text" class="form-control" [(ngModel)]="clientModifiee.nom" name="nom"
-                                    placeholder="Name">
-                            </div>
-                            <div class="col-6 form-group pl-1">
-                                <input type="text" class="form-control" name="prenom"
-                                    [(ngModel)]="clientModifiee.prenom" placeholder="Last Name">
-                            </div>
-                        </div>
-
-                        <div class="row no-gutters">
-                            <div class="col-md-12 form-group">
-                                <div class="custom-select-form">
-                                    <select class="wide add_bottom_15" name="adresse"
-                                        [(ngModel)]="clientModifiee.adresse" id="country">
-                                        <option value="">Choisir une adresse</option>
-                                        <option value="Tunis">Tunis</option>
-                                        <option value="Ben Arous">Ben Arous</option>
-                                        <option value="Bizerte">Bizerte</option>
-                                        <option value="Nabel">Nabel</option>
-                                        <option value="Sfax">Sfax</option>
-                                        <option value="Sousse">Sousse</option>
-                                        <option value="Monastir">Monastir</option>
-                                        <option value="Kasserine">Kasserine</option>
-                                        <option value="Gafsa">Gafsa</option>
-                                        <option value="Gabes">Gabes</option>
-                                        <option value="Mednine">Mednine</option>
-                                        <option value="Tataouine">Tataouine</option>
-                                        <option value="Sidi Bouzid">Sidi Bouzid</option>
-                                        <option value="Selyena">Selyena</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /row -->
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Telephone">
-                        </div>
-                        <hr>
-
-                        <div id="other_addr_c" class="pt-2">
-                            <div class="row no-gutters">
-                                <div class="col-6 form-group pr-1">
-                                    <input type="text" class="form-control" placeholder="Name">
-                                </div>
-                                <div class="col-6 form-group pl-1">
-                                    <input type="text" class="form-control" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <!-- /row -->
-
-
-
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Telephone">
-                            </div>
-                        </div>
-                        <!-- /other_addr_c -->
-                        <hr>
+                <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+                    <div class="text-center">
+                        <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
                     </div>
-                    <!-- /tab_1 -->
-                    <button type="submit" class="btn btn-primary"
-                        (click)="modifierClient(clientModifiee)">Modifier</button>
-                </div>
+                    <div class="form-group">
+                        <label>Choisir photo du profil</label>
+                        <input accept="image/*" class="form-control" type="file" #fileUploader
+                            formControlName="imageUrl" (change)="showPreview($event)">
+                        <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">Ce champ
+                            est
+                            obligatoire..
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email" formControlName="email">
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" name="nom" formControlName="nom">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Pren</label>
+                        <input type="text" class="form-control" name="prenom" formControlName="prenom">
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>Numéro de télephone</label>
+                        <input type="number" class="form-control" name="numTelephone" formControlName="numTelephone">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 form-group">
+                            <div class="custom-select-form">
+                                <select class="wide add_bottom_15" name="adresse" formControlName="adresse">
+                                    <option value="">Choisir une adresse</option>
+                                    <option value="Tunis">Tunis</option>
+                                    <option value="Ben Arous">Ben Arous</option>
+                                    <option value="Bizerte">Bizerte</option>
+                                    <option value="Nabel">Nabel</option>
+                                    <option value="Sfax">Sfax</option>
+                                    <option value="Sousse">Sousse</option>
+                                    <option value="Monastir">Monastir</option>
+                                    <option value="Kasserine">Kasserine</option>
+                                    <option value="Gafsa">Gafsa</option>
+                                    <option value="Gabes">Gabes</option>
+                                    <option value="Mednine">Mednine</option>
+                                    <option value="Tataouine">Tataouine</option>
+                                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                                    <option value="Selyena">Selyena</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
+                </form>
             </div>
 
 
@@ -179,9 +185,9 @@
                     <h3>3.Historique des Commande</h3>
                     <div class="box_general summary">
                         <ul>
-            
+
                             <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee">
-                                <em>{{l.quantite}}x{{l.produit.titre}}</em> 
+                                <em>{{l.quantite}}x{{l.produit.titre}}</em>
                                 <span>{{l.prixParQuantite}}</span>
                                 <img style="width: 50px;" src="{{l.produit.imageUrl}}" data-src="{{l.produit.imageUrl}}"
                                     class="lazy" alt="Image">

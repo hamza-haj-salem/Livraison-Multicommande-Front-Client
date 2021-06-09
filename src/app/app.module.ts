@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutsComponent } from './layouts/layouts.component';
@@ -31,6 +31,11 @@ import { ListeProduitsParNatureComponent } from './ventes/liste-produits-par-nat
 import { VerifierCommandeComponent } from './carts/verifier-commande/verifier-commande.component';
 import { MessagesComponent } from './login/messages/messages.component';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from 'src/environments/environment';
+import { ConfirmerInscriptionComponent } from './login/confirmer-inscription/confirmer-inscription.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +60,8 @@ import { MessagesComponent } from './login/messages/messages.component';
     ListeProduitsParTitreComponent,
     ListeProduitsParNatureComponent,
     VerifierCommandeComponent,
-    MessagesComponent
+    MessagesComponent,
+    ConfirmerInscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +70,11 @@ import { MessagesComponent } from './login/messages/messages.component';
     NgxWebstorageModule,
     NgxWebstorageModule.forRoot(),
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    ReactiveFormsModule,
+    FormsModule,
     
   ],
   providers: [],

@@ -19,7 +19,8 @@
                     <!-- Mobile menu button -->
                     <div class="main-menu">
                         <div id="header_menu">
-                            <a href="index.html"><img src="assets/img/logo_black.svg" alt="" width="100" height="35"></a>
+                            <a href="index.html"><img src="assets/img/logo_black.svg" alt="" width="100"
+                                    height="35"></a>
                             <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
                         </div>
                         <ul>
@@ -30,7 +31,7 @@
                                     <li><a href="aide">Aide</a></li>
                                     <li><a href="contact">Contact</a></li>
                                     <li><a href="aPropos">A Propos</a></li>
-                                    
+
                                 </ul>
                             </li>
                             <li class="megamenu submenu">
@@ -42,30 +43,33 @@
                                             <ul>
                                                 <li><a href="listeProduits">Liste Produits</a></li>
                                                 <li><a href="home">Home</a></li>
-                                                
+
                                             </ul>
                                         </div>
                                         <div class="col-lg-3">
                                             <h3>Listing row &amp; Product</h3>
                                             <ul>
                                                 <li><a href="listeProduitsBarreLaterale">Row Sidebar Left</a></li>
-                                               
+
                                             </ul>
                                         </div>
                                         <div class="col-lg-3">
                                             <h3>Other pages</h3>
                                             <ul>
                                                 <li *ngIf="clientconnecte"><a href="cart">Cart </a></li>
-                                                <li *ngIf="clientconnecte"> <a href="verifierCommande">verifier Commande</a></li>                               
+                                                <li *ngIf="clientconnecte"> <a href="verifierCommande">verifier
+                                                        Commande</a></li>
                                                 <li *ngIf="clientconnecte"><a href="profil">Profil</a></li>
-                                                <li><a href="aide">Aide</a></li>            
+                                                <li><a href="aide">Aide</a></li>
                                                 <li *ngIf="clientconnecte"><a href="commenter">commenter</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
                                             <div class="banner_menu">
                                                 <a href="#0">
-                                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/banner_menu.jpg" width="400" height="550" alt="" class="img-fluid lazy">
+                                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                                        data-src="img/banner_menu.jpg" width="400" height="550" alt=""
+                                                        class="img-fluid lazy">
                                                 </a>
                                             </div>
                                         </div>
@@ -91,7 +95,7 @@
                                 </ul>
                             </li>
                             <li *ngIf="clientconnecte">
-                                <a  href="cart">Ma Carte</a>
+                                <a href="cart">Ma Carte</a>
                             </li>
                             <li>
                                 <a href="listeProduits">Liste Des Produits</a>
@@ -100,14 +104,30 @@
                     </div>
                     <!--/main-menu -->
                 </nav>
-                <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right" *ngIf="clientconnecte">
-                    <a  class="phone_top" style="cursor: pointer;"><strong ><span href="profil">{{client.nom}} {{client.prenom}}</span> <a  (click)="deconnexion()">deconnexion</a></strong></a>
+               
+                <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right"
+                    *ngIf="clientconnecte">
+                    <a class="phone_top" style="cursor: pointer;">
+                        <strong>
+                            <img style=" -webkit-border-radius:50px;
+                            -moz-border-radius:50px;
+                            border-radius:50px;
+                            width:40px;
+                            height:40px;" class="img" alt="avatar" src="{{client.imageUrl}}">
+                            <span href="profil">{{client.nom}} {{client.prenom}}</span>
+                            <a (click)="deconnexion()">deconnexion</a>
+                                
+                        </strong>
+                    </a>
                 </div>
 
-                <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right" *ngIf="!clientconnecte">
-                    <a  class="phone_top" style="cursor: pointer;"><strong ><span href="profil">{{client.nom}} {{client.prenom}}</span> <a (click)="deconnexion()">S'inscrire</a></strong></a>
+                <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right"
+                    *ngIf="!clientconnecte">
+                    <a class="phone_top" style="cursor: pointer;"><strong><span href="profil">{{client.nom}}
+                                {{client.prenom}}</span> <a (click)="deconnexion()">S'inscrire</a></strong></a>
                 </div>
-               
+
+
             </div>
             <!-- /row -->
         </div>
@@ -120,6 +140,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-3">
                     <nav class="categories">
                         <ul class="clearfix">
+
                             <li><span>
                                     <a href="#">
                                         <span class="hamburger hamburger--spin">
@@ -132,10 +153,11 @@
                                 </span>
                                 <div id="menu">
                                     <ul>
-                                        <li *ngFor="let s of listeSousCategories"><span ><a (click)="listeProdBySousCat(s.titre)">{{s.titre}}</a></span>
-                                            
+                                        <li *ngFor="let s of listeSousCategories"><span><a
+                                                    (click)="listeProdBySousCat(s.titre)">{{s.titre}}</a></span>
+
                                         </li>
-                                       
+
                                     </ul>
                                 </div>
                             </li>
@@ -149,20 +171,23 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-2 col-md-3">
-                    <ul class="top_tools" >
-                        <li >
+                    <ul class="top_tools">
+                        <li>
                             <div class="dropdown dropdown-cart" *ngIf="clientconnecte">
-                                <a href="cart" class="cart_bt" ><strong>2</strong></a>
-                                <div class="dropdown-menu" >
-                                    <ul >
-                                        <li *ngFor="let l of listeLigneCommandeCommandee" >
-                                            <a href="product-detail-1.html" >
-                                                <figure><img src="{{l.produit.imageUrl}}" data-src="{{l.produit.imageUrl}}" alt="" width="50" height="50" class="lazy"></figure>
-                                                <strong><span>{{l.quantite}}x {{l.produit.titre}}</span>{{l.prixParQuantite}}</strong>
+                                <a href="cart" class="cart_bt"><strong>2</strong></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li *ngFor="let l of listeLigneCommandeCommandee">
+                                            <a href="product-detail-1.html">
+                                                <figure><img src="{{l.produit.imageUrl}}"
+                                                        data-src="{{l.produit.imageUrl}}" alt="" width="50" height="50"
+                                                        class="lazy"></figure>
+                                                <strong><span>{{l.quantite}}x
+                                                        {{l.produit.titre}}</span>{{l.prixParQuantite}}</strong>
                                             </a>
                                             <a href="#0" class="action"><i class="ti-trash"></i></a>
                                         </li>
-                    
+
                                     </ul>
                                     <div class="total_drop">
                                         <div class="clearfix"><strong>Total</strong><span>{{Total}}</span></div>
@@ -173,14 +198,14 @@
                             </div>
                             <!-- /dropdown-cart-->
                         </li>
-                        
-                        <li >
-                            <a *ngIf="clientconnecte" href="#0" class="wishlist"><span >Wishlist</span></a>
+
+                        <li>
+                            <a *ngIf="clientconnecte" href="#0" class="wishlist"><span>Wishlist</span></a>
                         </li>
-                        
-                        
-                        
-                        
+
+
+
+
 
                         <li>
                             <div class="dropdown dropdown-access">
@@ -188,22 +213,28 @@
                                 <div class="dropdown-menu">
                                     <a href="login" class="btn_1">Se Connecter Ou Inscrire</a>
                                     <ul>
-                                        
-                                        <li >
-                                            <a *ngIf="clientconnecte" href="historiqueCommande"><i class="ti-pie-chart"></i>Historique des Commandes</a>
-                                        </li >
-                                        <li >
-                                            <a *ngIf="clientconnecte" href="profil"><i class="ti-user"></i>Mon Profile</a>
+
+                                        <li>
+                                            <a *ngIf="clientconnecte" href="historiqueCommande"><i
+                                                    class="ti-pie-chart"></i>Historique des Commandes</a>
                                         </li>
-                                        <li >
-                                            <a *ngIf="clientconnecte" href="messages"><i class="ti-email"></i>Messages</a>
+                                        <li>
+                                            <a *ngIf="clientconnecte" href="profil"><i class="ti-user"></i>Mon
+                                                Profile</a>
                                         </li>
-                                        <li >
-                                            <a *ngIf="clientconnecte" href="commenter"><i class="ti-comment"></i>Commenter Un produit</a>
+                                        <li>
+                                            <a *ngIf="clientconnecte" href="messages"><i
+                                                    class="ti-email"></i>Messages</a>
                                         </li>
-                                        <li style="cursor: pointer;" >
-                                            <a *ngIf="clientconnecte"  (click)="deconnexion()"><i class="ti-power-off"></i>Deconnexion</a>
+                                        <li>
+                                            <a *ngIf="clientconnecte" href="commenter"><i
+                                                    class="ti-comment"></i>Commenter Un produit</a>
                                         </li>
+                                        <li style="cursor: pointer;">
+                                            <a *ngIf="clientconnecte" (click)="deconnexion()"><i
+                                                    class="ti-power-off"></i>Deconnexion</a>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </div>

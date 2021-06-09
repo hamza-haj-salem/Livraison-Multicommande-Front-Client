@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
         (data) => {
           this.commande = data;
           console.log(this.commande.prixTotal);
-          if (this.commande.etat != "fini") {
+          if (this.commande.etat == "en attente de confirmation") {
           this.listeLigneCommandeCommandee = this.commande.ligneCommande;
           this.Total=this.commande.prixTotal;
           }else{

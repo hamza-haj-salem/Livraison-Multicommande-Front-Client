@@ -25,19 +25,23 @@ export class ListeProduitsComponent implements OnInit {
   produit2: any = { idProduit: null, titre: "", description: "", imageUrl: "", nature: "", sousCategorie: this.sousCategorie2, prix: null, stock: null };
   ligneCommande2 = { idLigneCommande: null, produit: this.produit2, commande: null, quantite: 1, prixParQuantite: null }
   listeLigneCommande2: any = [this.ligneCommande2];
-  client2: any = { id: null, nom: "", prenom: "", email: "", mot_de_passe: "", libelle: "", adresse: "", image_id: null, };
+  client2: any = { nom: "", prenom: "", email: "", mot_de_passe: "", libelle: "", adresse: "", image_id: null, };
   commande2: any = { idCommande: null, ligneCommande: this.listeLigneCommande2, client: this.client2, adresseLivraison: "", prixTotal: null };
   commande3: any = Commande;
 
 
   produitNvStock: any = Produit;
+  client: any;
   // favoris:any=Favoris;
 
   constructor(private serv: LMClientService,
     private local: LocalStorageService,
     private route: Router,) {
 
-    this.client2 = this.local.retrieve("client");
+    this.client = this.local.retrieve("client");
+    console.log(this.client);
+    this.serv.findClientByEmail(this.client.email).subscribe(
+      (data) => {this.client2 = data;},(err)=>{})
     console.log(this.client2);
     this.serv.getListeProduits().subscribe(
       (data) => {
@@ -66,7 +70,7 @@ export class ListeProduitsComponent implements OnInit {
     this.commande2.dateLivraison = Date.now();
     this.ligneCommande2.produit = produit;
     this.ligneCommande2.prixParQuantite = produit.prix;
-    this.commande2.etat = "en attente";
+    this.commande2.etat = "en attente de confirmation";
     this.local.store("ligneCommande2", this.ligneCommande2);
     if (this.client2 != null) { //si le client n'est pas cnte
       this.serv.getCommandeByClient(this.client2.id).subscribe(
@@ -79,6 +83,7 @@ export class ListeProduitsComponent implements OnInit {
           this.local.store("commande2", this.commande2);
           this.serv.ajouterCommande(this.commande2).subscribe(
             (data) => {
+              
               this.route.navigate(["/cart"]);
               this.produitNvStock = produit;
               this.produitNvStock.stock = this.produitNvStock.stock - 1
@@ -86,6 +91,7 @@ export class ListeProduitsComponent implements OnInit {
               this.serv.addProduit(this.produitNvStock).subscribe(
                 (data) => { }, (err) => { }
               )
+              //this.serv.ajouterCmdFb(this.commande2);
             }, (err) => { console.log(err) }
           )
         }, (err) => { }

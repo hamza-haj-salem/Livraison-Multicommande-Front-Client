@@ -9,8 +9,20 @@ export class Commande {
     public ligneCommande: LigneCommande[];
     public client: Client;
     public prixTotal:number;
+    public chargeLivraison:number;
+
+
+    public methodeLivraison:string;
 
     constructor(){}
+
+    public set $chargeLivraison(x:number){
+        this.$chargeLivraison=x;
+    }
+
+    public set $methodeLivraison(x:string){
+        this.$methodeLivraison=x;
+    }
 
     public set $prixTotal(x:number){
         this.$prixTotal=x;

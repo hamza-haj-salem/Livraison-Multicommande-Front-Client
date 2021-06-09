@@ -4,6 +4,7 @@ import { CartComponent } from './carts/cart/cart.component';
 import { VerifierCommandeComponent } from './carts/verifier-commande/verifier-commande.component';
 import { HomeComponent } from './home/home/home.component';
 import { LayoutsComponent } from './layouts/layouts.component';
+import { ConfirmerInscriptionComponent } from './login/confirmer-inscription/confirmer-inscription.component';
 import { LoginClientComponent } from './login/login-client/login-client.component';
 import { MessagesComponent } from './login/messages/messages.component';
 import { ProfilComponent } from './login/profil/profil.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
       { path: "commenter", component: CommenterProduitComponent },
       { path: "verifierCommande", component: VerifierCommandeComponent },
       { path: "messages", component: MessagesComponent },
+      { path: "confirmerInscription", component: ConfirmerInscriptionComponent },
 
     ]
   },

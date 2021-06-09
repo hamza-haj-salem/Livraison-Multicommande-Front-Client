@@ -19,6 +19,7 @@ export class VerifierCommandeComponent implements OnInit {
   commande3: any = Commande;
   prixLivraison: number = 0;
   Total: number = 0;
+  chargeTotal: number = 0;
   
   constructor(private serv: LMClientService,
     private local: LocalStorageService,
@@ -33,7 +34,7 @@ export class VerifierCommandeComponent implements OnInit {
 
       }, (err) => { }
     )
-    console.log(this.prixLivraison);
+    //console.log(this.prixLivraison);
   }
 
   ngOnInit(): void {
@@ -41,11 +42,29 @@ export class VerifierCommandeComponent implements OnInit {
 
   livraisonExpresse() {
     this.prixLivraison = 6000;
-    this.Total = this.commande.prixTotal + this.prixLivraison;
+    this.commande.methodeLivraison = "livraison expresse";
+    this.chargeTotal = this.Total + this.prixLivraison;
+    this.commande.chargeLivraison=6000;
+    //this.commande.prixTotal=this.chargeTotal;
+    console.log(this.commande);
+  
   }
   livraisonStandard() {
     this.prixLivraison = 0;
-    this.Total = this.commande.prixTotal;
+    this.chargeTotal = this.commande.prixTotal;
+    this.commande.methodeLivraison = "livraison standard";
+    this.commande.chargeLivraison=0;
+    //this.commande.prixTotal=this.chargeTotal;
+    console.log(this.commande);
+    
+      
+  }
+  confirmerCommande(){
+    this.commande.prixTotal=this.chargeTotal;
+    console.log(this.commande);
+    
+    this.local.store("commandeFinale",this.commande);
+    this.route.navigate(["confirmerCommande"]);
   }
 
 }

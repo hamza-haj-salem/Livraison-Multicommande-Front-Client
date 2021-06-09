@@ -153,7 +153,7 @@
                         <h3>2. Payement et Livraison</h3>
                         <ul>
                             <li>
-                                <label class="container_radio">Credit Card<a href="#0" class="info"
+                                <label  class="container_radio">Credit Card<a href="#0" class="info"
                                         data-toggle="modal" data-target="#payments_method"></a>
                                     <input type="radio" name="payment" checked>
                                     <span class="checkmark"></span>
@@ -222,11 +222,11 @@
                                 <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee"><em>{{l.quantite}}x {{l.produit.titre}}</em> <span>{{l.prixParQuantite}}</span></li>
                             </ul>
                             <ul>
-                                <li class="clearfix"><em><strong>Subtotal</strong></em> <span>{{commande.prixTotal}} DT</span></li>
+                                <li class="clearfix"><em><strong>Subtotal</strong></em> <span>{{Total}} DT</span></li>
                                 <li class="clearfix"><em><strong>Livraison</strong></em> <span>{{prixLivraison}}DT</span></li>
 
                             </ul>
-                            <div class="total clearfix">TOTAL <span>{{Total}}</span></div>
+                            <div class="total clearfix">TOTAL <span>{{chargeTotal}}</span></div>
                             <div class="form-group">
                                 <label class="container_check">Register to the Newsletter.
                                     <input type="checkbox" checked>
@@ -234,7 +234,7 @@
                                 </label>
                             </div>
 
-                            <a href="confirmerCommande" class="btn_1 full-width">Confirmer et Payer</a>
+                            <a (click)="confirmerCommande()"  class="btn_1 full-width">Confirmer et Payer</a>
                         </div>
                         <!-- /box_general -->
                     </div>
