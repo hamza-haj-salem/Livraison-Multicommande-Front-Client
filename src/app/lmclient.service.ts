@@ -47,7 +47,7 @@ export class LMClientService {
 
   //CLIENT                                //http://localhost:8080/findClientByEmail/
   findClientByEmail(emailClient: string) {//https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app
-    return this.http.get('https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app' + emailClient);
+    return this.http.get('https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app/findClientByEmail' + emailClient);
   }
   verifierCordonneesClient(client: any) {
     return this.http.get('http://localhost:8080/verifierCordonneesClient', client);
