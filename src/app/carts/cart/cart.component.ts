@@ -82,8 +82,9 @@ export class CartComponent implements OnInit {
     )
 
   }
-  supprimerLigneCommande(l) {
-    this.serv.supprimerLigneCommande(l).subscribe(
+  supprimerLigneCommande(idLc) {
+    console.log(this.commande3.idCommande,idLc)
+    this.serv.supprimerLigneCommande(this.commande3.idCommande,idLc).subscribe(
       (data) => { }, (err) => { console.log(err) }
     )
   }

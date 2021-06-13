@@ -45,9 +45,9 @@ export class LMClientService {
   }
   
 
-  //CLIENT
-  findClientByEmail(emailClient: string) {
-    return this.http.get('http://localhost:8080/findClientByEmail/' + emailClient);
+  //CLIENT                                //http://localhost:8080/findClientByEmail/
+  findClientByEmail(emailClient: string) {//https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app
+    return this.http.get('https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app' + emailClient);
   }
   verifierCordonneesClient(client: any) {
     return this.http.get('http://localhost:8080/verifierCordonneesClient', client);
@@ -81,8 +81,8 @@ export class LMClientService {
   retirerQuantiteLigneCommande(l: any) {
     return this.http.post('http://localhost:8080/retirerQuantiteLigneCommande', l);
   }
-  supprimerLigneCommande(l: any){
-    return this.http.delete('http://localhost:8080/supprimerLigneCommande', l);
+  supprimerLigneCommande(idC:number,idLc: number){
+    return this.http.delete('http://localhost:8080/supprimerLigneCommande/'+'idC/'+ 'idLc');
   }
   
 

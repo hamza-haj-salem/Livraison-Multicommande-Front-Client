@@ -56,7 +56,7 @@
                             <strong>{{l.prixParQuantite}}</strong>
                         </td>
                         <td class="options">
-                            <a (click)="supprimerLigneCommande(l)"><i class="ti-trash"></i></a>
+                            <a (click)="supprimerLigneCommande(l.idLigneCommande)"><i class="ti-trash"></i></a>
                         </td>
                     </tr>
 
@@ -67,14 +67,14 @@
                 <div class="col-sm-4 text-right">
                     <button (click)="mettreAJourCommande()" type="button" class="btn_1 gray">Update Cart</button>
                 </div>
-                <div class="col-sm-8">
+                <!-- <div class="col-sm-8">
                     <div class="apply-coupon">
                         <div class="form-group form-inline">
                             <input type="text" name="coupon-code" value="" placeholder="Promo code"
                                 class="form-control"><button type="button" class="btn_1 outline">Apply Coupon</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- /cart_actions -->
 
