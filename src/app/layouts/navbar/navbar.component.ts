@@ -58,6 +58,9 @@ export class NavbarComponent implements OnInit {
     this.client = this.local.retrieve("client");
     console.log(this.client);
   }
+  profil(){
+    this.route.navigate(["profil"]);
+  }
 
   listeProdBySousCat(titreSousCat) {
     this.serv.ListProduitByTitreSousCategorie(titreSousCat).subscribe(

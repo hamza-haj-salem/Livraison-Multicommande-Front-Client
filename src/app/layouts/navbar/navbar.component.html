@@ -104,22 +104,37 @@
                     </div>
                     <!--/main-menu -->
                 </nav>
-               
+
+
                 <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right"
                     *ngIf="clientconnecte">
                     <a class="phone_top" style="cursor: pointer;">
                         <strong>
-                            <img style=" -webkit-border-radius:50px;
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img style=" -webkit-border-radius:50px;
                             -moz-border-radius:50px;
                             border-radius:50px;
                             width:40px;
                             height:40px;" class="img" alt="avatar" src="{{client.imageUrl}}">
-                            <span href="profil">{{client.nom}} {{client.prenom}}</span>
-                            <a (click)="deconnexion()">deconnexion</a>
-                                
+                                    </td>
+                                    <td (click)="profil()" >
+                                        <span >{{client.nom}} {{client.prenom}}</span>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <div>
+                                            <a (click)="deconnexion()">deconnexion</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
                         </strong>
                     </a>
                 </div>
+
 
                 <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right"
                     *ngIf="!clientconnecte">
