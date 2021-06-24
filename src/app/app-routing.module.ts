@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CartComponent } from './carts/cart/cart.component';
 import { VerifierCommandeComponent } from './carts/verifier-commande/verifier-commande.component';
+import { DetailsCommandeFiniComponent } from './historiques/details-commande-fini/details-commande-fini.component';
+import { HistoriqueCommandeComponent } from './historiques/historique-commande/historique-commande.component';
 import { HomeComponent } from './home/home/home.component';
 import { LayoutsComponent } from './layouts/layouts.component';
 import { ConfirmerInscriptionComponent } from './login/confirmer-inscription/confirmer-inscription.component';
@@ -47,7 +49,10 @@ const routes: Routes = [
       { path: "verifierCommande", component: VerifierCommandeComponent },
       { path: "messages", component: MessagesComponent },
       { path: "confirmerInscription", component: ConfirmerInscriptionComponent },
+      { path: "historiqueCommande", component: HistoriqueCommandeComponent },
+      { path: "detailsCommande", component: DetailsCommandeFiniComponent },
 
+      
     ]
   },
   { path: "login", component: LoginClientComponent },

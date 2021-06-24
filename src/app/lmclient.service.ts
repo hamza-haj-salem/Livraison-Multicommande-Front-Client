@@ -28,6 +28,11 @@ export class LMClientService {
   ListProduitByTitre(titreProd: string) {
     return this.http.get('http://localhost:8080/listeProduitsByTitre/' + titreProd);
   }
+
+  ListProduitByTitreContaining(titreProd: string) {
+    return this.http.get('http://localhost:8080/listeProduitsByTitreContaining/' + titreProd);
+  }
+
   ListProduitByPrix(prixMin:number, prixMax: number) {
     return this.http.get('http://localhost:8080/listeProduitsByPrix/' + prixMin +'/'+prixMax);
   }
@@ -47,7 +52,7 @@ export class LMClientService {
 
   //CLIENT                                //http://localhost:8080/findClientByEmail/
   findClientByEmail(emailClient: string) {//https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app
-    return this.http.get('https://livraison-multicommande-back-spring-1dnob19cu-hamza-haj-salem.vercel.app/findClientByEmail' + emailClient);
+    return this.http.get('http://localhost:8080/findClientByEmail/' + emailClient);
   }
   verifierCordonneesClient(client: any) {
     return this.http.get('http://localhost:8080/verifierCordonneesClient', client);
@@ -70,20 +75,21 @@ export class LMClientService {
   creerCommande(c: any) {
     return this.http.post('http://localhost:8080/creerCommande', c);
   }
+  listeCommandeFiniParClient(idCl: number) {
+    return this.http.get('http://localhost:8080/listeCommandeFiniParClient/' + idCl);
+  }
 
   //LIGNE COMMANDE
+  ajouterLigneCommande(l:any){
+    return this.http.post('http://localhost:8080/ajouterLigneCommande/', l);
+  }
   getLigneCommandeById(idLigneCommande: number) {
     return this.http.get('http://localhost:8080/getLigneCommandeById/' + idLigneCommande);
   }
   ajouterQuantiteLigneCommande(c: any) {
     return this.http.post('http://localhost:8080/ajouterQuantiteLigneCommande', c);
   }
-  retirerQuantiteLigneCommande(l: any) {
-    return this.http.post('http://localhost:8080/retirerQuantiteLigneCommande', l);
-  }
-  supprimerLigneCommande(idC:number,idLc: number){
-    return this.http.delete('http://localhost:8080/supprimerLigneCommande/'+'idC/'+ 'idLc');
-  }
+  
   
 
   //COMMENTER

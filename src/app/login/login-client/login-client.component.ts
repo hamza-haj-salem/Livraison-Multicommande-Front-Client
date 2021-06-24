@@ -80,9 +80,12 @@ export class LoginClientComponent implements OnInit {
             console.log(this.commande);
             //kif nsajel l cmd nsajel m3aha l client nouvellement inscrit
             // ml back
+            /*
             this.serv.creerCommande(this.commande).subscribe(
               (data) => { }, (err) => { }
-            )
+            )*/
+            this.serv.ajouterClient(this.nvClient).subscribe(
+              (data) => { }, (err) => { } )
            
           this.route.navigate(["confirmerInscription"]);
             /*

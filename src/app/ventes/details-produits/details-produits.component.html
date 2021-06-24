@@ -25,16 +25,16 @@
                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i
                                 class="icon-star voted"></i><i class="icon-star voted"></i><i
                                 class="icon-star"></i><em>4 reviews</em></span>
-                        <p><small>ID: {{produit.idProduit}}</small><br>Sed ex labitur adolescens scriptorem. Te saepe
-                            verear tibique sed. Et wisi ridens vix, lorem iudico blandit mel cu. Ex vel sint zril
-                            oportere, amet wisi aperiri te cum.</p>
+                        <p><small>ID: {{produit.idProduit}}</small><br></p>
                         <p>{{produit.description}}</p>
                         <div class="col-lg-4 col-md-6">
+                            <!--
                             <div style="width: 210px;" class="numbers-row">
                                 <input type="text" value="{{qte}}" id="quantity_1" class="qty2" name="quantity_1">
                                 <div (click)="ajoutQuantite()" class="inc button_inc">+</div>
                                 <div (click)="retireQuantite()" class="dec button_inc">-</div>
                             </div>
+                            -->
                         </div>
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
@@ -71,7 +71,7 @@
         <!-- /tabs_product -->
 
         <div class="tab_content_wrapper">
-            <div>
+            <div class="container">
                 <div class="tab-content" role="tablist">
                     <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
                         <div class="card-header" role="tab" id="heading-A">
@@ -144,40 +144,53 @@
                             <div class="card-body">
                                 <div class="row justify-content-between">
                                     <div class="col-lg-5">
-                                        <div class="review_content" *ngFor="let c of listeCommentaires">
-                                            <div class="clearfix add_bottom_10">
-                                                <span class="rating">
-                                                    <div>
-                                                        <i class="icon-star"></i>
-                                                    </div>
-
-                                                    <em>{{c.nbrEtoile}}/5.0</em>
-                                                </span>
-                                                <em>Publier par : {{c.client.nom}}</em>
-                                            </div>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <img style=" -webkit-border-radius:50px;
-                                                        -moz-border-radius:50px;
-                                                         border-radius:50px;
-                                                         width:40px;
-                                                        height:40px;" class="img" src="{{c.client.imageUrl}}">
-                                                    </td>
-                                                    <td>
-                                                        <h4>{{c.client.nom}}</h4>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <h4>{{c.titre}}</h4>
-                                            <p>{{c.contenu}}</p>
-                                        </div>
+                                        
                                     </div>
+
+
 
 
                                 </div>
                                 <!-- /row -->
 
+                            </div>
+                            <div>
+                                <div id="comments">
+                                    <h5>Comments</h5>
+                                    <ul>
+                                        <li>
+                                            <div *ngFor="let c of listeCommentaires">
+                                                <div class="avatar">
+                                                    <a href="#"><img src="{{c.client.imageUrl}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="comment_right clearfix">
+                                                    <div class="comment_info">
+                                                        publié par :
+                                                        <a href="#">{{c.client.nom}} {{c.client.prenom}}</a>
+                                                        <span>|</span>{{c.nbrEtoile}}/5.0<span>|</span><a href="#">
+                                                            <i class="icon-reply"></i>
+                                                            <span class="rating" >
+                                                                <div>
+                                                                   
+                                                                   <i class="icon-star"> </i> 
+                                                                </div>
+            
+                                                                <em>{{c.nbrEtoile}}/5.0</em>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <p>
+                                                        {{c.titre}} : {{c.contenu}}
+                                                    </p>
+                                                </div>
+                                                <br>
+                                            </div>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </div>
                             <!-- /card-body -->
                         </div>

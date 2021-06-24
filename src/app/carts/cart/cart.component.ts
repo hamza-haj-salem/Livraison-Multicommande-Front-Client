@@ -13,19 +13,23 @@ import { Produit } from 'src/app/model/produit';
   styleUrls: ['./cart.component.sass']
 })
 export class CartComponent implements OnInit {
-  listeLigneCommandeCommandee: any = [];
   ligneCommande3: any = LigneCommande;
   client: Client;
-  commande: any = Commande;
+
+  commande = new Commande();
+  listeLigneCommandeCommandee: any = [];
+
+
   commande3: any = Commande;
-  Total:number=0;
-  verifierCommande:Boolean=true;
- 
+  Total: number = 0;
+  verifierCommande: Boolean = true;
+
   constructor(private serv: LMClientService,
     private local: LocalStorageService,
     private route: Router,) {
     this.client = this.local.retrieve("client");
-  // if(this.client != null){
+    // if(this.client != null){
+    /*
       this.serv.getCommandeByClient(this.client.id).subscribe(
         (data) => {
           this.commande = data;
@@ -39,33 +43,64 @@ export class CartComponent implements OnInit {
           }
         }, (err) => { }
       )
-   // }
+      */
+
+    this.commande = this.local.retrieve("commande2Liste1");
+    this.local.clear("commande2Liste1");
+    console.log(this.commande);
+    if (this.commande.etat == "en attente de confirmation") {
+      this.listeLigneCommandeCommandee = this.commande.ligneCommande;
+      console.log(this.listeLigneCommandeCommandee);
+      this.Total = this.commande.prixTotal;
+    } else {
+      this.listeLigneCommandeCommandee = null;
+      this.verifierCommande = false;
+    }
+    this.local.store("commande2Liste1", this.commande);
+
+    // }
     /*else{
       this.commande = this.local.retrieve("commandeSansClient");
       this.listeLigneCommandeCommandee = this.commande.ligneCommande;
       this.Total=this.commande.prixTotal;
     }*/
-    
+
   }
-  
+
 
   ngOnInit(): void {
   }
   ajoutQuantite(l) {
+    this.Total = 0
     l.quantite += 1;
-    
     l.prixParQuantite = l.produit.prix * l.quantite;
+    this.listeLigneCommandeCommandee.forEach(ligneCommande => {
+      ligneCommande.prixParQuantie = ligneCommande.quantite * ligneCommande.produit.prix;
+      this.Total = this.Total + ligneCommande.prixParQuantie;
+    });
+    this.commande.ligneCommande = this.listeLigneCommandeCommandee;
+    this.commande.prixTotal = this.Total;
+
+
   }
   retireQuantite(l) {
     if (l.quantite >= 1) {
       l.quantite = l.quantite - 1;
       l.prixParQuantite = l.produit.prix * l.quantite;
     } else {
-      l.quantite = 0;
+      l.quantite = 1;
+      this.listeLigneCommandeCommandee.pop(l);
     }
+    l.prixParQuantie = l.quantite * l.produit.prix;
+    this.Total = this.Total - l.produit.prix;
+    this.commande.prixTotal = this.Total;
+    this.commande.ligneCommande = this.listeLigneCommandeCommandee;
+
+
 
   }
   mettreAJourCommande() {
+    /*
     this.commande3 = this.local.retrieve("commande2");
     console.log(this.commande3);
     this.commande3.ligneCommande = this.listeLigneCommandeCommandee;
@@ -80,13 +115,26 @@ export class CartComponent implements OnInit {
         console.log(this.commande.prixTotal);
       }, (err) => { }
     )
+    */
+    this.local.clear("commande2Liste1");
+    this.local.store("commande2Liste1", this.commande);
+    this.commande = this.local.retrieve("commande2Liste1");
+    alert("Votre Carte à eete mise à jour !!");
+   
+
 
   }
-  supprimerLigneCommande(idLc) {
-    console.log(this.commande3.idCommande,idLc)
-    this.serv.supprimerLigneCommande(this.commande3.idCommande,idLc).subscribe(
-      (data) => { }, (err) => { console.log(err) }
-    )
+
+  supprimerLigneCommande(ligneCommande) {
+    this.listeLigneCommandeCommandee.pop(ligneCommande);
+    this.commande.ligneCommande = this.listeLigneCommandeCommandee;
+    this.Total = this.Total - ligneCommande.produit.prix * ligneCommande.quantite;
+    this.commande.prixTotal = this.Total;
+    this.local.clear("commande2Liste1");
+    this.local.store("commande2Liste1", this.commande);
+    this.commande = this.local.retrieve("commande2Liste1");
+    alert("Produit Supprimé !!");
+
   }
 
 

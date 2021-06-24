@@ -11,6 +11,8 @@ import { Commande } from 'src/app/model/commande';
   styleUrls: ['./navbar.component.sass']
 })
 export class NavbarComponent implements OnInit {
+  titreProduit:string=""
+
   listeLigneCommandeCommandee: any = [];
   listeProduitsParSousCat: any = [];
 
@@ -23,6 +25,7 @@ export class NavbarComponent implements OnInit {
   Total:number=0;
 
   verifierCommande:Boolean=true;
+  listeProduits: any = [];
   constructor(private serv: LMClientService,
     private local: LocalStorageService,
     private route: Router,) {
@@ -49,6 +52,16 @@ export class NavbarComponent implements OnInit {
       }, (err) => { }
     )
 
+  }
+
+  chercherParTitreProd(){
+    this.serv.ListProduitByTitreContaining(this.titreProduit).subscribe(
+      (data) => {
+        this.listeProduits = data;
+        this.local.store("listeProduitsParTitre", this.listeProduits);
+        this.route.navigate(["listeProduitsParTitre"]);
+      }, (err) => { console.log(err) }
+    )
   }
 
   ngOnInit(): void {

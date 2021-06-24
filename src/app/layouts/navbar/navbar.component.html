@@ -94,7 +94,7 @@
                                     <li><a href="modal-newsletter.html">Modal Newsletter</a></li>
                                 </ul>
                             </li>
-                            <li *ngIf="clientconnecte">
+                            <li>
                                 <a href="cart">Ma Carte</a>
                             </li>
                             <li>
@@ -119,8 +119,8 @@
                             width:40px;
                             height:40px;" class="img" alt="avatar" src="{{client.imageUrl}}">
                                     </td>
-                                    <td (click)="profil()" >
-                                        <span >{{client.nom}} {{client.prenom}}</span>
+                                    <td (click)="profil()">
+                                        <span>{{client.nom}} {{client.prenom}}</span>
                                     </td>
                                     <td></td>
                                     <td>
@@ -137,10 +137,16 @@
 
 
                 <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-right"
-                    *ngIf="!clientconnecte">
-                    <a class="phone_top" style="cursor: pointer;"><strong><span href="profil">{{client.nom}}
-                                {{client.prenom}}</span> <a (click)="deconnexion()">S'inscrire</a></strong></a>
+                *ngIf="clientconnecte==false">
+                    <a class="phone_top" style="cursor: pointer;">
+                        <strong>
+                            <span  href="profil"></span>
+                            <a (click)="deconnexion()">S'inscrire</a>
+                        </strong>
+                    </a>
                 </div>
+
+
 
 
             </div>
@@ -181,15 +187,17 @@
                 </div>
                 <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                     <div class="custom-search-input">
-                        <input type="text" placeholder="Search over 10.000 products">
-                        <button type="submit"><i class="header-icon_search_custom"></i></button>
+                        <input [(ngModel)]="titreProduit" type="text" placeholder="Chercher par titre produit">
+                        <button (click)="chercherParTitreProd()" type="submit"><i class="header-icon_search_custom"></i></button>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-2 col-md-3">
                     <ul class="top_tools">
                         <li>
                             <div class="dropdown dropdown-cart" *ngIf="clientconnecte">
-                                 <a href="cart" class="cart_bt"><!--<strong></strong> --></a>
+                                <a href="cart" class="cart_bt">
+                                    <!--<strong></strong> -->
+                                </a>
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li *ngFor="let l of listeLigneCommandeCommandee">
@@ -226,7 +234,7 @@
                             <div class="dropdown dropdown-access">
                                 <a href="account.html" class="access_link"><span>Account</span></a>
                                 <div class="dropdown-menu">
-                                    <a href="login" class="btn_1">Se Connecter Ou Inscrire</a>
+                                    <a *ngIf="!clientconnecte" href="login" class="btn_1">Se Connecter Ou Inscrire</a>
                                     <ul>
 
                                         <li>

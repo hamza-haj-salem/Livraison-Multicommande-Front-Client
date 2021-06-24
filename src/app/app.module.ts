@@ -36,6 +36,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { environment } from 'src/environments/environment';
 import { ConfirmerInscriptionComponent } from './login/confirmer-inscription/confirmer-inscription.component';
+import { HistoriqueCommandeComponent } from './historiques/historique-commande/historique-commande.component';
+import { DetailsCommandeFiniComponent } from './historiques/details-commande-fini/details-commande-fini.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,9 @@ import { ConfirmerInscriptionComponent } from './login/confirmer-inscription/con
     ListeProduitsParNatureComponent,
     VerifierCommandeComponent,
     MessagesComponent,
-    ConfirmerInscriptionComponent
+    ConfirmerInscriptionComponent,
+    HistoriqueCommandeComponent,
+    DetailsCommandeFiniComponent
   ],
   imports: [
     BrowserModule,

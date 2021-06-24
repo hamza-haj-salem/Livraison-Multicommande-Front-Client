@@ -15,23 +15,17 @@ import { Produit } from 'src/app/model/produit';
 export class ListeProduitsComponent implements OnInit {
   listeProduits: any = [];
   listeSousCategories: any = [];
-  /*
-   client2:any= Client;
-   commande2:any=Commande;
-   ligneCommande2:any=LigneCommande;
-    */
-  categorie2: any = { id: null, titre: "" };
-  sousCategorie2: any = { id: null, titre: "", categorie: this.categorie2 };
-  produit2: any = { idProduit: null, titre: "", description: "", imageUrl: "", nature: "", sousCategorie: this.sousCategorie2, prix: null, stock: null };
-  ligneCommande2 = { idLigneCommande: null, produit: this.produit2, commande: null, quantite: 1, prixParQuantite: null }
-  listeLigneCommande2: any = [this.ligneCommande2];
-  client2: any = { nom: "", prenom: "", email: "", mot_de_passe: "", libelle: "", adresse: "", image_id: null, };
-  commande2: any = { idCommande: null, ligneCommande: this.listeLigneCommande2, client: this.client2, adresseLivraison: "", prixTotal: null };
-  commande3: any = Commande;
 
+
+  client2: any = { nom: "", prenom: "", email: "", mot_de_passe: "", libelle: "", adresse: "", image_id: null, };
+
+
+  commandeSess = new Commande();
+  listeLigneCommandeSess: any = [];
 
   produitNvStock: any = Produit;
   client: any;
+  produitExisteCarte: boolean;
   // favoris:any=Favoris;
 
   constructor(private serv: LMClientService,
@@ -40,9 +34,13 @@ export class ListeProduitsComponent implements OnInit {
 
     this.client = this.local.retrieve("client");
     console.log(this.client);
-    this.serv.findClientByEmail(this.client.email).subscribe(
-      (data) => {this.client2 = data;},(err)=>{})
-    console.log(this.client2);
+
+    if (this.client != null) {
+      this.serv.findClientByEmail(this.client.email).subscribe(
+        (data) => { this.client2 = data; }, (err) => { })
+      console.log(this.client2);
+    }
+
     this.serv.getListeProduits().subscribe(
       (data) => {
         this.listeProduits = data;
@@ -61,46 +59,81 @@ export class ListeProduitsComponent implements OnInit {
   }
 
   ajouterAuCommande(produit) {
-    this.commande2.client = this.client2;
-    if (this.client2 != null) {
-      this.commande2.adresseLivraison = this.client2.adresse;
+    this.commandeSess = this.local.retrieve("commande2Liste1");
+    console.log(this.commandeSess);
+    if (this.commandeSess != null) {
+      const ligneCommandeSess2 = new LigneCommande;
+      ligneCommandeSess2.produit = produit;
+      //1
+      this.listeLigneCommandeSess.push(ligneCommandeSess2);
+      this.listeLigneCommandeSess = this.commandeSess.ligneCommande;
+      this.commandeSess.ligneCommande = this.listeLigneCommandeSess;
+      for (var i = 0; i < this.commandeSess.ligneCommande.length; i++) {
+        if (produit.idProduit === this.commandeSess.ligneCommande[i].produit.idProduit) {
+          this.produitExisteCarte = true;
+          break;
+        } else {
+          this.produitExisteCarte = false;
+        }
+      }
+      if (this.produitExisteCarte == false) {
+        alert("PRODUIT AJOUTEE DANS VOTRE CARTE AVEC SUCCE PRINCIPAL");
+
+        // 3 ligne hathom lezemhom ykoun m3awdin martin 1 et 2 ( kif n3ml add to carte ml details prod)
+        //2
+        this.listeLigneCommandeSess.push(ligneCommandeSess2);
+        this.listeLigneCommandeSess = this.commandeSess.ligneCommande;
+        this.commandeSess.ligneCommande = this.listeLigneCommandeSess;
+
+        ligneCommandeSess2.prixParQuantite = produit.prix;
+        ligneCommandeSess2.quantite = 1;
+        this.commandeSess.dateLivraison = new Date();
+        this.commandeSess.etat = "en attente de confirmation";
+        if (this.client != null) {
+          this.commandeSess.client = this.client2;
+          this.commandeSess.adresseLivraison = this.client2.adresse;
+        } else {
+          this.commandeSess.client = null;
+        }
+        this.commandeSess.prixTotal = 0;
+        this.commandeSess.ligneCommande.forEach(ligneCommande => {
+          this.commandeSess.prixTotal = this.commandeSess.prixTotal + ligneCommande.prixParQuantite;
+        });
+        console.log(this.commandeSess);
+        this.local.store("commande2Liste1", this.commandeSess);
+
+      } else {
+        alert("PRODUIT EXISTE DEJA DANS VOTRE CARTE PRINCIPAL");
+      }
+
     } else {
-      this.commande2.adresseLivraison = null;
+      const commandeSess2 = new Commande;
+      const ligneCommandeSess2 = new LigneCommande;
+      ligneCommandeSess2.produit = produit;
+      alert("PRODUIT AJOUTEE DANS VOTRE CARTE AVEC SUCCE PREM")
+      ligneCommandeSess2.prixParQuantite = produit.prix;
+      ligneCommandeSess2.quantite = 1;
+      this.listeLigneCommandeSess.push(ligneCommandeSess2);
+      console.log(this.listeLigneCommandeSess);
+      commandeSess2.ligneCommande = this.listeLigneCommandeSess;
+      commandeSess2.dateLivraison = new Date();
+      commandeSess2.etat = "en attente de confirmation";
+      if (this.client != null) {
+        commandeSess2.client = this.client2;
+        commandeSess2.adresseLivraison = this.client2.adresse;
+      } else {
+        commandeSess2.client = null;
+        commandeSess2.adresseLivraison = null;
+      }
+      commandeSess2.prixTotal = produit.prix;
+      this.local.store("commande2Liste1", commandeSess2);
+
+
+
+
     }
-    this.commande2.dateLivraison = Date.now();
-    this.ligneCommande2.produit = produit;
-    this.ligneCommande2.prixParQuantite = produit.prix;
-    this.commande2.etat = "en attente de confirmation";
-    this.local.store("ligneCommande2", this.ligneCommande2);
-    if (this.client2 != null) { //si le client n'est pas cnte
-      this.serv.getCommandeByClient(this.client2.id).subscribe(
-        (data) => {
-          this.commande3 = data;
-          this.commande2.idCommande = this.commande3.idCommande;
-          this.commande2.prixTotal = this.commande3.prixTotal + this.ligneCommande2.prixParQuantite
-          this.local.store("idCommande", this.commande2.idCommande);
-          console.log(this.commande2);
-          this.local.store("commande2", this.commande2);
-          this.serv.ajouterCommande(this.commande2).subscribe(
-            (data) => {
-              
-              this.route.navigate(["/cart"]);
-              this.produitNvStock = produit;
-              this.produitNvStock.stock = this.produitNvStock.stock - 1
-              console.log(this.produitNvStock);
-              this.serv.addProduit(this.produitNvStock).subscribe(
-                (data) => { }, (err) => { }
-              )
-              //this.serv.ajouterCmdFb(this.commande2);
-            }, (err) => { console.log(err) }
-          )
-        }, (err) => { }
-      )
-    }
-    
-    else{
-       this.route.navigate(["/login"]);
-    }
+
+
 
   }
 

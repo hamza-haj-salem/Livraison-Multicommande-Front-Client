@@ -1,0 +1,90 @@
+<div id="page">
+    <div class="bg_gray">
+        <div class="container margin_30">
+            <div class="page_header">
+                <div class="breadcrumbs">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Category</a></li>
+                        <li>Page active</li>
+                    </ul>
+                </div>
+                <h1>Historique details commandes page</h1>
+            </div>
+            <!-- /page_header -->
+            <table class="table table-striped cart-list">
+                <thead>
+                    <tr>
+                        <th>
+                            Image Produit
+                        </th>
+                        <th>
+                            Titre produit
+                        </th>
+                        
+                        <th>
+                            Description produit
+                        </th>
+                        <th>
+                            Quantite 
+                        </th>
+                        <th>
+                            Prix par quantite
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let l of commande.ligneCommande">
+                        <td>
+                            
+                            <div class="thumb_cart">
+                                <img style="width: 50px;" src="{{l.produit.imageUrl}}" 
+                                    class="lazy" >
+                            </div>
+                        </td>
+                        <td>
+                            <strong>{{l.produit.titre}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{l.produit.description}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{l.quantite}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{l.prixParQuantite}}</strong>
+                        </td>
+                        
+                    
+                        
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <div class="row add_top_30 flex-sm-row-reverse cart_actions">
+                <!--
+                <div class="col-sm-4 text-right">
+                    <button (click)="mettreAJourCommande()" type="button" class="btn_1 gray">Update Cart</button>
+                </div>
+                -->
+                <!-- <div class="col-sm-8">
+                    <div class="apply-coupon">
+                        <div class="form-group form-inline">
+                            <input type="text" name="coupon-code" value="" placeholder="Promo code"
+                                class="form-control"><button type="button" class="btn_1 outline">Apply Coupon</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- /cart_actions -->
+
+        </div>
+        <!-- /container -->
+
+        
+        <!-- /box_cart -->
+
+    </div>
+
+</div>

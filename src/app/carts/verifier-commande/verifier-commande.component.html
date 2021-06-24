@@ -30,85 +30,49 @@
                             </li>
                         </ul>
                         <div class="tab-content checkout">
-                            <div class="tab-pane fade show active" id="tab_1" role="tabpanel"
-                                aria-labelledby="tab_1">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password">
-                                </div>
-                                <hr>
-                                <div class="row no-gutters">
-                                    <div class="col-6 form-group pr-1">
-                                        <input type="text" class="form-control" placeholder="Name">
+                            <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
+                                <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+                                    <div class="text-center">
+                                        <img [src]="imgSrc" width="200px" height="150px" (click)="fileUploader.click()">
                                     </div>
-                                    <div class="col-6 form-group pl-1">
-                                        <input type="text" class="form-control" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <!-- /row -->
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Full Address">
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-6 form-group pr-1">
-                                        <input type="text" class="form-control" placeholder="City">
-                                    </div>
-                                    <div class="col-6 form-group pl-1">
-                                        <input type="text" class="form-control" placeholder="Postal code">
-                                    </div>
-                                </div>
-                                <!-- /row -->
-                                <div class="row no-gutters">
-                                    <div class="col-md-12 form-group">
-                                        <div class="custom-select-form">
-                                            <select class="wide add_bottom_15" name="country" id="country">
-                                                <option value="" selected>Adresse</option>
-                                                <option value="Bizerte">Bizerte</option>
-                                                <option value="Tunis">Tunis</option>
-                                                <option value="Sfax">Sfax</option>
-                                                <option value="Gabes">Gabes</option>
-                                                <option value="Mednine">Mednine</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /row -->
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Telephone">
-                                </div>
-                                <hr>
-                                
-                                <div id="other_addr_c" class="pt-2">
-                                    <div class="row no-gutters">
-                                        <div class="col-6 form-group pr-1">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="col-6 form-group pl-1">
-                                            <input type="text" class="form-control" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <!-- /row -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Full Address">
+                                        <label>Choisir photo du profil</label>
+                                        <input accept="image/*" class="form-control" type="file" #fileUploader
+                                            formControlName="imageUrl" (change)="showPreview($event)">
                                     </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-6 form-group pr-1">
-                                            <input type="text" class="form-control" placeholder="City">
-                                        </div>
-                                        <div class="col-6 form-group pl-1">
-                                            <input type="text" class="form-control" placeholder="Postal code">
-                                        </div>
-                                    </div>
-                                    <!-- /row -->
-                                   
-                                    
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Telephone">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="email" formControlName="email">
                                     </div>
-                                </div>
-                                <!-- /other_addr_c -->
+                                    <div class="form-group">
+                                        <label>mot de passe</label>
+                                        <input type="text" class="form-control" name="motDePasse"
+                                            formControlName="motDePasse">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Nom</label>
+                                        <input type="text" class="form-control" name="nom" formControlName="nom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pren</label>
+                                        <input type="text" class="form-control" name="prenom" formControlName="prenom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Adresse</label>
+                                        <input type="text" class="form-control" name="adresse"
+                                            formControlName="adresse">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Numéro de télephone</label>
+                                        <input type="number" class="form-control" name="numTelephone"
+                                            formControlName="numTelephone">
+                                    </div>
+                                    <div class="text-center"><input type="submit" value="S'inscrire"
+                                            class="btn_1 full-width"></div>
+                                </form>
+                                <hr>
+
+
                                 <hr>
                             </div>
                             <!-- /tab_1 -->
@@ -133,12 +97,12 @@
                                 </div>
                                 <div id="forgot_pw">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email_forgot"
-                                            id="email_forgot" placeholder="Type your email">
+                                        <input type="email" class="form-control" name="email_forgot" id="email_forgot"
+                                            placeholder="Type your email">
                                     </div>
                                     <p>A new password will be sent shortly.</p>
-                                    <div class="text-center"><input type="submit" value="Reset Password"
-                                            class="btn_1"></div>
+                                    <div class="text-center"><input type="submit" value="Reset Password" class="btn_1">
+                                    </div>
                                 </div>
                                 <hr>
                                 <input type="submit" class="btn_1 full-width" value="Login">
@@ -153,30 +117,32 @@
                         <h3>2. Payement et Livraison</h3>
                         <ul>
                             <li>
-                                <label  class="container_radio">Credit Card<a href="#0" class="info"
+                                <label class="container_radio">Credit Card<a href="#0" class="info" data-toggle="modal"
+                                        data-target="#payments_method"></a>
+                                    <input type="radio" name="payment"   [disabled]="true">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li >
+                                <label disable class="container_radio">Paypal<a href="#0" class="info" data-toggle="modal"
+                                        data-target="#payments_method"></a>
+                                    <input type="radio" name="payment" [disabled]="true">
+                                    <span class="checkmark"></span>
+                                   
+                                </label>
+                                
+                            </li>
+                            <li>
+                                <label class="container_radio">payement à la livraison<a href="#0" class="info"
                                         data-toggle="modal" data-target="#payments_method"></a>
                                     <input type="radio" name="payment" checked>
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label class="container_radio">Paypal<a href="#0" class="info" data-toggle="modal"
-                                        data-target="#payments_method"></a>
-                                    <input type="radio" name="payment">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="container_radio">payement à la livraison<a href="#0" class="info"
-                                        data-toggle="modal" data-target="#payments_method"></a>
-                                    <input type="radio" name="payment">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </li>
-                            <li>
                                 <label class="container_radio">Bank Transfer<a href="#0" class="info"
                                         data-toggle="modal" data-target="#payments_method"></a>
-                                    <input type="radio" name="payment">
+                                    <input type="radio" name="payment"  [disabled]="true">
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -217,13 +183,16 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="step last">
                         <h3>3. Commande</h3>
-                        <div class="box_general summary" >
+                        <div class="box_general summary">
                             <ul>
-                                <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee"><em>{{l.quantite}}x {{l.produit.titre}}</em> <span>{{l.prixParQuantite}}</span></li>
+                                <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee"><em>{{l.quantite}}x
+                                        {{l.produit.titre}}</em> <span>{{l.prixParQuantite}}</span></li>
                             </ul>
                             <ul>
                                 <li class="clearfix"><em><strong>Subtotal</strong></em> <span>{{Total}} DT</span></li>
-                                <li class="clearfix"><em><strong>Livraison</strong></em> <span>{{prixLivraison}}DT</span></li>
+                                <li class="clearfix"><em><strong>Livraison</strong></em>
+                                    <span>{{prixLivraison}}DT</span>
+                                </li>
 
                             </ul>
                             <div class="total clearfix">TOTAL <span>{{chargeTotal}}</span></div>
@@ -234,7 +203,7 @@
                                 </label>
                             </div>
 
-                            <a (click)="confirmerCommande()"  class="btn_1 full-width">Confirmer et Payer</a>
+                            <a (click)="confirmerCommande()" class="btn_1 full-width">Confirmer et Payer</a>
                         </div>
                         <!-- /box_general -->
                     </div>
