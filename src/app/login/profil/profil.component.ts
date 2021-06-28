@@ -38,6 +38,7 @@ export class ProfilComponent implements OnInit {
   imgSrc: string;
   isSubmitted: boolean;
   image: any;
+  listeCommande: Object;
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -117,12 +118,10 @@ export class ProfilComponent implements OnInit {
     this.resetForm();
     this.client = this.local.retrieve("client");
     console.log(this.client);
-    this.serv.getCommandeByClient(this.client.id).subscribe(
+    this.serv.listeCommandeFiniParClient(this.client.id).subscribe(
       (data) => {
-        this.commande = data;
-        console.log(this.commande.prixTotal);
-        this.Total = this.commande.prixTotal;
-        this.listeLigneCommandeCommandee = this.commande.ligneCommande;
+        this.listeCommande = data;
+        
 
       }, (err) => { }
     )
@@ -134,6 +133,10 @@ export class ProfilComponent implements OnInit {
 
   editProfil() {
     this.afficherEditProfil = !this.afficherEditProfil;
+  }
+  DetailsCmd(commande){
+    this.local.store("cmdDetails",commande);
+    this.route.navigate(["/detailsCommande"]);
   }
 
 

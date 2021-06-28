@@ -84,17 +84,23 @@ export class CartComponent implements OnInit {
 
   }
   retireQuantite(l) {
+    this.Total = 0
     if (l.quantite >= 1) {
       l.quantite = l.quantite - 1;
       l.prixParQuantite = l.produit.prix * l.quantite;
-    } else {
-      l.quantite = 1;
+    } if(l.quantite ==0) {
       this.listeLigneCommandeCommandee.pop(l);
     }
     l.prixParQuantie = l.quantite * l.produit.prix;
-    this.Total = this.Total - l.produit.prix;
-    this.commande.prixTotal = this.Total;
+    //this.Total = this.Total - l.produit.prix;
+    //this.commande.prixTotal = this.Total;
+    //this.commande.ligneCommande = this.listeLigneCommandeCommandee;
+    this.listeLigneCommandeCommandee.forEach(ligneCommande => {
+      ligneCommande.prixParQuantie = ligneCommande.quantite * ligneCommande.produit.prix;
+      this.Total = this.Total + ligneCommande.prixParQuantie;
+    });
     this.commande.ligneCommande = this.listeLigneCommandeCommandee;
+    this.commande.prixTotal = this.Total;
 
 
 

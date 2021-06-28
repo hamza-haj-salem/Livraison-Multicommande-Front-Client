@@ -195,5 +195,8 @@ export class ListeProduitsComponent implements OnInit {
       }, (err) => { console.log(err) }
     )
   }
+  ordonnerParPrix(){
+    console.log("aaaaa")
+  }
 
 }

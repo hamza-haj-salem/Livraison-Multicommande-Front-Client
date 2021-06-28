@@ -141,7 +141,8 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">ville de livraison</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="adresse" formControlName="adresse">
+                        <select class="form-control" id="exampleFormControlSelect1" name="adresse"
+                            formControlName="adresse">
                             <option value="">Choisir une adresse</option>
                             <option value="Tunis">Tunis</option>
                             <option value="Ben Arous">Ben Arous</option>
@@ -158,13 +159,19 @@
                             <option value="Sidi Bouzid">Sidi Bouzid</option>
                             <option value="Selyena">Selyena</option>
                         </select>
-                      </div>
-                   
+                    </div>
 
 
+<!--
+                    <div>
 
+                        <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
 
-                    <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
+                    </div>
+                    -->
+                    <div  class="text-center"><input  type="submit" value="Submit"
+                        class="btn_1 full-width"></div>
+                    <br>
                 </form>
             </div>
 
@@ -184,19 +191,57 @@
                     <div class="box_general summary">
                         <ul>
 
-                            <li class="clearfix" *ngFor="let l of listeLigneCommandeCommandee">
-                                <em>{{l.quantite}}x{{l.produit.titre}}</em>
-                                <span>{{l.prixParQuantite}}</span>
-                                <img style="width: 50px;" src="{{l.produit.imageUrl}}" data-src="{{l.produit.imageUrl}}"
-                                    class="lazy" alt="Image">
-                            </li>
-                        </ul>
-                        <ul>
-                            <li class="clearfix"><em><strong>Subtotal</strong></em> <span>{{commande.prixTotal}}
-                                    DT</span></li>
+                            <table class="table table-striped cart-list">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            n^ de commande
+                                        </th>
+                                        <th>
+                                            Date Livraison
+                                        </th>
 
+                                        <th>
+                                            Methode de livraison
+                                        </th>
+                                        <th>
+                                            Charge de livraison
+                                        </th>
+                                        <th>
+                                            Details de commande
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let c of listeCommande">
+                                        <td>
+
+                                            <strong>{{c.idCommande}} </strong>
+                                        </td>
+                                        <td>
+                                            <strong>{{c.dateLivraison}}</strong>
+                                        </td>
+                                        <td>
+                                            <strong>{{c.methodeLivraison}}</strong>
+                                        </td>
+                                        <td>
+                                            <strong>{{c.chargeLivraison}}</strong>
+                                        </td>
+                                        <td>
+
+                                            <div (click)="DetailsCmd(c)" class="text-center"><input type="submit"
+                                                    value="Details" class="btn_1 full-width"></div>
+
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
                         </ul>
-                        <div class="total clearfix">TOTAL <span>{{Total}}</span></div>
+
+
 
 
 

@@ -12,7 +12,7 @@
                 <h1 style="color: blue;">Tous Les Catégories</h1>
             </div>
         </div>
-        <img src="assets/images/shopping2.jpg" class="img-fluid" alt="">
+        <img src="assets/images/shoppingJumai.jpg" class="img-fluid" alt="">
 
     </div>
     <!-- /top_banner -->
@@ -51,32 +51,15 @@
                             <div class="dropdown-menu">
                                 <div class="filter_type">
                                     <ul>
-                                        <li>
-                                            <label class="container_check">Men <small>12</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Women <small>24</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Running <small>23</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Training <small>11</small>
-                                                <input type="checkbox">
+                                        <li *ngFor="let s of listeSousCategories"
+                                            (click)="filtrerParSousCategorie(s.titre)">
+                                            <label >{{s.titre}}
+                                               
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                     </ul>
-                                    <a href="" class="apply_filter">Apply</a>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
                                 </div>
                             </div>
                         </div>
@@ -84,36 +67,25 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="drop">Color</a>
+                            <a href="#" data-toggle="dropdown" class="drop">Nature</a>
                             <div class="dropdown-menu">
                                 <div class="filter_type">
                                     <ul>
-                                        <li>
-                                            <label class="container_check">Blue <small>06</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParNature()">
+                                            <label >Cassable
+                                               
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">Red <small>12</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParNature2()">
+                                            <label >Non Cassable
+                                               
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">Orange <small>17</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Black <small>43</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
+
                                     </ul>
-                                    <a href="" class="apply_filter">Apply</a>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
                                 </div>
                             </div>
                         </div>
@@ -121,36 +93,19 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="drop">Brand</a>
+                            <a href="#" data-toggle="dropdown" class="drop">Titre</a>
                             <div class="dropdown-menu">
                                 <div class="filter_type">
                                     <ul>
-                                        <li>
-                                            <label class="container_check">Adidas <small>11</small>
-                                                <input type="checkbox">
+                                        <li *ngFor="let p of listeProduits" (click)="filtrerParTitre(p.titre)">
+                                            <label >{{p.titre}}
+                                               
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">Nike <small>08</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Vans <small>05</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="container_check">Puma <small>18</small>
-                                                <input type="checkbox">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
+
                                     </ul>
-                                    <a href="" class="apply_filter">Apply</a>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
                                 </div>
                             </div>
                         </div>
@@ -158,36 +113,36 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="dropdown">
-                            <a href="#" data-toggle="dropdown" class="drop">Price</a>
+                            <a href="#" data-toggle="dropdown" class="drop">Prix</a>
                             <div class="dropdown-menu">
                                 <div class="filter_type">
                                     <ul>
-                                        <li>
-                                            <label class="container_check">$0 — $50<small>11</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParPrix(1000,1500)">
+                                            <label>1000Dt — 1500DT<small>11</small>
+                                                
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">$50 — $100<small>08</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParPrix(1500,2000)">
+                                            <label >1500DT — 2000DT<small>08</small>
+                                                
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">$100 — $150<small>05</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParPrix(2000,2500)">
+                                            <label >2000DT — 2500DT<small>05</small>
+                                               
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="container_check">$150 — $200<small>18</small>
-                                                <input type="checkbox">
+                                        <li (click)="filtrerParPrix(2500,3000)">
+                                            <label >2500DT — 3000DT<small>18</small>
+                                                
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                     </ul>
-                                    <a href="#0" class="apply_filter">Apply</a>
+                                    <!--<a href="#0" class="apply_filter">Appliquer</a> -->
                                 </div>
                             </div>
                         </div>
